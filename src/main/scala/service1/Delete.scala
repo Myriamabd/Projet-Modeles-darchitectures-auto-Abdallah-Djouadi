@@ -40,7 +40,7 @@ object Delete {
       val dataset = read(sparkSession, Path)
       val new_dataset = delete(dataset, id)
       new_dataset.show()
-      write(new_dataset, "data")
+      write(new_dataset, Path +"/new")
       new_dataset
     }
 
