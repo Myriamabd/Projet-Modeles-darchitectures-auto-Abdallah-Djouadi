@@ -15,11 +15,12 @@ object Hachage {
 
 
   def hash2 (sparkSession: SparkSession, id: Long, dataset : Dataset[Client]): Unit = {
-    val dataset = serviceDelete.Delete.read(sparkSession, "data")
+    val Path = "hdfs://172.31.254.20:9090/user/bronze/json/data"
+    val dataset = serviceDelete.Delete.read(sparkSession, Path)
     val filteredID = dataset.filter(col("IdentifiantClient") === id)
     val hashedColumn = udf((input: String) => MessageDigest.getInstance("SHA-256").digest(input.getBytes).map("%02x".format(_)).mkString)
     val hashedData = filteredID.withColumn("Nom", hashedColumn(col("Nom"))).withColumn("Prenom", hashedColumn(col("Prenom"))).withColumn("Adresse", hashedColumn(col("Adresse")))
-    hashedData.write.csv("data/hash")
+    hashedData.write.csv(Path + "/hash")
     hashedData.show()
   }
 

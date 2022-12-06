@@ -28,6 +28,9 @@ object Delete {
         .option("delimiter", ";")
         .mode("overwrite")
         .csv(path)
+
+      import scala.sys.process._
+      //s"hdfs dfs -mv new data" !
     }
 
     def delete(dataset: Dataset[Client], id: Long): Dataset[Client] = {
@@ -36,7 +39,7 @@ object Delete {
     }
 
     def deleteClient(sparkSession: SparkSession, id: Long): Dataset[Client] ={
-      val Path = "data"
+      val Path = "hdfs://172.31.254.20:9090/user/bronze/json/data"
       val dataset = read(sparkSession, Path)
       dataset.show()
       val new_dataset = delete(dataset, id)
@@ -44,7 +47,6 @@ object Delete {
       write(new_dataset, Path +"/new")
       new_dataset
     }
-
 
 }
 

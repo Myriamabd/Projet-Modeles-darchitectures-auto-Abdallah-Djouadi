@@ -10,7 +10,7 @@ object Main {
     val sparkSession = SparkSession.builder().master(master = "local").getOrCreate()
     //serviceDelete.Delete.deleteClient(sparkSession, 88)
     val dataset = serviceDelete.Delete.read(sparkSession, "data")
-    serviceHachage.Hachage.hash2(sparkSession, 12, dataset)
+    serviceHachage.Hachage.hash2(sparkSession, 13, dataset)
 
 
 
