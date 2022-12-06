@@ -30,7 +30,7 @@ object Delete {
         .csv(path)
 
       import scala.sys.process._
-      //s"hdfs dfs -mv new data" !
+      s"hdfs dfs -mv new data" !
     }
 
     def delete(dataset: Dataset[Client], id: Long): Dataset[Client] = {
