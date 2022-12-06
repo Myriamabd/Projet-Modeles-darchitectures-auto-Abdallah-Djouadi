@@ -9,5 +9,5 @@ Fonction de suppression des données à partir d'in ID (deleteClient):
 L'ID 88 a bien été supprimé.
 
 Fonction de hachage à partir d'un ID (hash2) :
-![image](https://user-images.githubusercontent.com/76534861/206017400-ad92ce88-3db1-431b-ac4c-b3761ca9e120.png)
-Les données de l'ID 12 ont bien été hachées.
+![image](https://user-images.githubusercontent.com/76534861/206037249-7699d8f5-fc08-4129-871d-90b485b49901.png)
+Les données de l'ID 13 ont bien été hachées.
