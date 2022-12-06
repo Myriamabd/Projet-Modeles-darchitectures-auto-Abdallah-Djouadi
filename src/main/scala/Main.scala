@@ -8,7 +8,9 @@ import org.apache.spark.sql.types.{IntegerType, LongType, StringType, StructFiel
 object Main {
   def main(args: Array[String]): Unit = {
     val sparkSession = SparkSession.builder().master(master = "local").getOrCreate()
-    service1.Delete.deleteClient(sparkSession, 88)
+    //serviceDelete.Delete.deleteClient(sparkSession, 88)
+    val dataset = serviceDelete.Delete.read(sparkSession, "data")
+    serviceHachage.Hachage.hash2(sparkSession, 12, dataset)
 
 
 

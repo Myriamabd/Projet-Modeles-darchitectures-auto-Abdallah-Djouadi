@@ -1,5 +1,5 @@
 package fr.episen.dataprocessing
-package service1
+package serviceDelete
 
 import config.Client
 
@@ -26,24 +26,24 @@ object Delete {
       dataset.write
         .option("header", true)
         .option("delimiter", ";")
-        .mode("overwrite")csv("data")
+        .mode("overwrite")
+        .csv(path)
     }
 
     def delete(dataset: Dataset[Client], id: Long): Dataset[Client] = {
       val dataset_delete = dataset.filter(!col("IdentifiantClient").isin(id))
-      dataset_delete.show()
       dataset_delete
     }
 
     def deleteClient(sparkSession: SparkSession, id: Long): Dataset[Client] ={
       val Path = "data"
       val dataset = read(sparkSession, Path)
+      dataset.show()
       val new_dataset = delete(dataset, id)
       new_dataset.show()
       write(new_dataset, Path +"/new")
       new_dataset
     }
-
 
 
 }
